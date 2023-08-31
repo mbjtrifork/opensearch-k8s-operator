@@ -33,6 +33,7 @@ const (
 // OpensearchUserSpec defines the desired state of OpensearchUser
 type OpensearchUserSpec struct {
 	OpensearchRef           corev1.LocalObjectReference `json:"opensearchCluster"`
+	OpensearchNamespace     string                      `json:"opensearchNamespace,omitempty"`
 	PasswordFrom            corev1.SecretKeySelector    `json:"passwordFrom"`
 	OpendistroSecurityRoles []string                    `json:"opendistroSecurityRoles,omitempty"`
 	BackendRoles            []string                    `json:"backendRoles,omitempty"`

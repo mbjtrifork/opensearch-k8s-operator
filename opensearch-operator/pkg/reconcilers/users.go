@@ -83,10 +83,17 @@ func (r *UserReconciler) Reconcile() (retResult ctrl.Result, retErr error) {
 		}
 	}()
 
-	r.cluster, retErr = util.FetchOpensearchCluster(r.ctx, r.Client, types.NamespacedName{
-		Name:      r.instance.Spec.OpensearchRef.Name,
-		Namespace: r.instance.Namespace,
-	})
+	if r.instance.Spec.OpensearchNamespace == "" {
+		r.cluster, retErr = util.FetchOpensearchCluster(r.ctx, r.Client, types.NamespacedName{
+			Name:      r.instance.Spec.OpensearchRef.Name,
+			Namespace: r.instance.Namespace,
+		})
+	} else {
+		r.cluster, retErr = util.FetchOpensearchCluster(r.ctx, r.Client, types.NamespacedName{
+			Name:      r.instance.Spec.OpensearchRef.Name,
+			Namespace: r.instance.Spec.OpensearchNamespace,
+		})
+	}
 	if retErr != nil {
 		reason = "error fetching opensearch cluster"
 		r.logger.Error(retErr, "failed to fetch opensearch cluster")
@@ -196,10 +203,17 @@ func (r *UserReconciler) Reconcile() (retResult ctrl.Result, retErr error) {
 
 func (r *UserReconciler) Delete() error {
 	var err error
-	r.cluster, err = util.FetchOpensearchCluster(r.ctx, r.Client, types.NamespacedName{
-		Name:      r.instance.Spec.OpensearchRef.Name,
-		Namespace: r.instance.Namespace,
-	})
+	if r.instance.Spec.OpensearchNamespace == "" {
+		r.cluster, err = util.FetchOpensearchCluster(r.ctx, r.Client, types.NamespacedName{
+			Name:      r.instance.Spec.OpensearchRef.Name,
+			Namespace: r.instance.Namespace,
+		})
+	} else {
+		r.cluster, err = util.FetchOpensearchCluster(r.ctx, r.Client, types.NamespacedName{
+			Name:      r.instance.Spec.OpensearchRef.Name,
+			Namespace: r.instance.Spec.OpensearchNamespace,
+		})
+	}
 	if err != nil {
 		return err
 	}

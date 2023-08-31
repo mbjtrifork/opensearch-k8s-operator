@@ -32,10 +32,11 @@ const (
 
 // OpensearchUserRoleBindingSpec defines the desired state of OpensearchUserRoleBinding
 type OpensearchUserRoleBindingSpec struct {
-	OpensearchRef corev1.LocalObjectReference `json:"opensearchCluster"`
-	Roles         []string                    `json:"roles"`
-	Users         []string                    `json:"users,omitempty"`
-	BackendRoles  []string                    `json:"backendRoles,omitempty"`
+	OpensearchRef       corev1.LocalObjectReference `json:"opensearchCluster"`
+	OpensearchNamespace string                      `json:"opensearchNamespace,omitempty"`
+	Roles               []string                    `json:"roles"`
+	Users               []string                    `json:"users,omitempty"`
+	BackendRoles        []string                    `json:"backendRoles,omitempty"`
 }
 
 // OpensearchUserRoleBindingStatus defines the observed state of OpensearchUserRoleBinding

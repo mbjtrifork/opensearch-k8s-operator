@@ -17,10 +17,11 @@ const (
 
 // OpensearchActionGroupSpec defines the desired state of OpensearchActionGroup
 type OpensearchActionGroupSpec struct {
-	OpensearchRef  corev1.LocalObjectReference `json:"opensearchCluster"`
-	AllowedActions []string                    `json:"allowedActions"`
-	Type           string                      `json:"type,omitempty"`
-	Description    string                      `json:"description,omitempty"`
+	OpensearchRef       corev1.LocalObjectReference `json:"opensearchCluster"`
+	OpensearchNamespace string                      `json:"opensearchNamespace,omitempty"`
+	AllowedActions      []string                    `json:"allowedActions"`
+	Type                string                      `json:"type,omitempty"`
+	Description         string                      `json:"description,omitempty"`
 }
 
 // OpensearchActionGroupStatus defines the observed state of OpensearchActionGroup

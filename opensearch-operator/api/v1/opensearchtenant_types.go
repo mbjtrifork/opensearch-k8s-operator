@@ -17,8 +17,9 @@ const (
 
 // OpensearchTenantSpec defines the desired state of OpensearchTenant
 type OpensearchTenantSpec struct {
-	OpensearchRef corev1.LocalObjectReference `json:"opensearchCluster"`
-	Description   string                      `json:"description,omitempty"`
+	OpensearchRef       corev1.LocalObjectReference `json:"opensearchCluster"`
+	OpensearchNamespace string                      `json:"opensearchNamespace,omitempty"`
+	Description         string                      `json:"description,omitempty"`
 }
 
 // OpensearchTenantStatus defines the observed state of OpensearchTenant
